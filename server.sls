@@ -1,4 +1,5 @@
-{%- if pillar.sphinx.server.enabled %}
+{%- set server = pillar.sphinx.server %}
+{%- if server.enabled %}
 
 sphinx_packages:
   pkg.installed:
