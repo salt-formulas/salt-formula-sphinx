@@ -29,8 +29,8 @@ Simple documentation with Git source
             builder: 'html'
             source: 
               engine: git
-              address: '/path/to/sphinx/documentation'
-              revision:
+              address: 'git@repo1.domain.com/repo.git'
+              revision: master
 
 ## Read more
 
