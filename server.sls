@@ -31,7 +31,7 @@ sphinx_source_{{ doc_name }}:
   {{ doc.source.engine }}.latest:
   - name: {{ doc.source.address }}
   - target: /srv/static/extern/{{ doc_name }}
-  - rev: {{ plugin.source.revision }}
+  - rev: {{ doc.source.revision }}
   - require:
     - file: /srv/static/extern
   - require_in:
