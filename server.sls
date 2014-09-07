@@ -39,7 +39,7 @@ sphinx_source_{{ doc_name }}:
 
 generate_sphinx_doc_{{ doc_name }}:
   cmd.run:
-  - name: sphinx-build -b {{ doc.builder }} /srv/static/extern/{{ doc_name }} /srv/static/sites/{{ doc_name }}
+  - name: sphinx-build -b {{ doc.builder }} /srv/static/extern/{{ doc_name }}{% if doc.path is defined %}/{{ doc.path }}{% endif %} /srv/static/sites/{{ doc_name }}
   - require:
     - git: sphinx_source_{{ doc_name }}
     - file: /srv/static/sites/{{ doc_name }}
