@@ -1,6 +1,9 @@
 {%- set server = pillar.sphinx.server %}
 {%- if server.enabled %}
 
+include:
+- git
+
 sphinx_packages:
   pkg.installed:
   - names:
@@ -34,12 +37,13 @@ sphinx_source_{{ doc_name }}:
   - rev: {{ doc.source.revision }}
   - require:
     - file: /srv/static/extern
+    - pkg: git_packages
   - require_in:
     - cmd: generate_sphinx_doc_{{ doc_name }}
 
 generate_sphinx_doc_{{ doc_name }}:
   cmd.run:
-  - name: sphinx-build -b {{ doc.builder }} /srv/static/extern/{{ doc_name }}{% if doc.source.path is defined %}/{{ doc.source.path }}{% endif %} /srv/static/sites/{{ doc_name }}
+  - name: sphinx-build -b {{ doc.builder }} /srv/static/extern/{{ doc_name }}{% if doc.path is defined %}/{{ doc.path }}{% endif %} /srv/static/sites/{{ doc_name }}
   - require:
     - git: sphinx_source_{{ doc_name }}
     - file: /srv/static/sites/{{ doc_name }}
