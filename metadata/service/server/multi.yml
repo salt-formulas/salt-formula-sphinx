@@ -1,0 +1,6 @@
+applications:
+- sphinx
+parameters:
+  sphinx:
+    server:
+      enabled: true
