@@ -30,6 +30,6 @@ Definition of all nodes within current infrastructure.
    overview/services
    {%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
    {%- if node_grains.get('sphinx_doc', {}) != None %}
-   nodes/{{ node_name }}
+   ../nodes/{{ node_name }}
    {%- endif %}
    {%- endfor %}
