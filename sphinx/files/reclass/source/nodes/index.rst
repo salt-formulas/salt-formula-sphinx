@@ -25,11 +25,8 @@ Definition of all nodes within current infrastructure.
 .. toctree::
    :maxdepth: 2
 
-   overview/endpoints
-   overview/nodes
-   overview/services
    {%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
    {%- if node_grains.get('sphinx_doc', {}) != None %}
-   ../nodes/{{ node_name }}
+   {{ node_name }}
    {%- endif %}
    {%- endfor %}

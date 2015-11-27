@@ -3,7 +3,7 @@ reclass_doc_dirs:
   file.directory:
   - names:
     - /srv/static/extern/reclass/source/_static
-    - /srv/static/extern/reclass/source/overview
+    - /srv/static/extern/reclass/source/services
     - /srv/static/extern/reclass/source/nodes
     - /srv/static/extern/reclass/source/devices
   - user: root
@@ -32,25 +32,33 @@ reclass_doc_dirs:
   - require:
     - file: reclass_doc_dirs
 
-/srv/static/extern/reclass/source/overview/nodes.rst:
+/srv/static/extern/reclass/source/nodes/index.rst:
   file.managed:
-  - source: salt://sphinx/files/reclass/source/overview/nodes.rst
+  - source: salt://sphinx/files/reclass/source/nodes/index.rst
   - template: jinja
   - mode: 644
   - require:
     - file: reclass_doc_dirs
 
-/srv/static/extern/reclass/source/overview/endpoints.rst:
+/srv/static/extern/reclass/source/services/index.rst:
   file.managed:
-  - source: salt://sphinx/files/reclass/source/overview/endpoints.rst
+  - source: salt://sphinx/files/reclass/source/services/index.rst
   - template: jinja
   - mode: 644
   - require:
     - file: reclass_doc_dirs
 
-/srv/static/extern/reclass/source/overview/services.rst:
+/srv/static/extern/reclass/source/services/endpoints.rst:
   file.managed:
-  - source: salt://sphinx/files/reclass/source/overview/services.rst
+  - source: salt://sphinx/files/reclass/source/services/endpoints.rst
+  - template: jinja
+  - mode: 644
+  - require:
+    - file: reclass_doc_dirs
+
+/srv/static/extern/reclass/source/services/catalog.rst:
+  file.managed:
+  - source: salt://sphinx/files/reclass/source/services/catalog.rst
   - template: jinja
   - mode: 644
   - require:
