@@ -12,6 +12,7 @@ Services exposed within configured infrastructure.
       - **Address**
       - **Protocol**
       - **Service**
+      - **Server**
 {%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
 {%- if node_grains.get('sphinx_doc', {}) != None %}
 {%- for service_name, service in node_grains.get('sphinx_doc', {}).iteritems() %}
@@ -23,6 +24,7 @@ Services exposed within configured infrastructure.
       - {{ endpoint.address }}
       - {{ endpoint.protocol }}
       - {{ service_name }}
+      - {{ node_name }}
 {%- endfor %}
 {%- endif %}
 {%- endfor %}
