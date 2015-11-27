@@ -32,14 +32,6 @@ reclass_doc_dirs:
   - require:
     - file: reclass_doc_dirs
 
-/srv/static/extern/reclass/source/nodes/index.rst:
-  file.managed:
-  - source: salt://sphinx/files/reclass/source/nodes/index.rst
-  - template: jinja
-  - mode: 644
-  - require:
-    - file: reclass_doc_dirs
-
 /srv/static/extern/reclass/source/services/index.rst:
   file.managed:
   - source: salt://sphinx/files/reclass/source/services/index.rst
@@ -59,6 +51,14 @@ reclass_doc_dirs:
 /srv/static/extern/reclass/source/services/catalog.rst:
   file.managed:
   - source: salt://sphinx/files/reclass/source/services/catalog.rst
+  - template: jinja
+  - mode: 644
+  - require:
+    - file: reclass_doc_dirs
+
+/srv/static/extern/reclass/source/nodes/index.rst:
+  file.managed:
+  - source: salt://sphinx/files/reclass/source/nodes/index.rst
   - template: jinja
   - mode: 644
   - require:
