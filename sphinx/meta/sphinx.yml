@@ -1,4 +1,4 @@
-{%- set server = pillar.sphinx.server %}
+{%- set server = pillar.sphinx.server -%}
 name: Sphinx
 description: Sphinx is a tool that makes it easy to create intelligent and beautiful documentation.
 documentation: http://sphinx-doc.org/tutorial.html
