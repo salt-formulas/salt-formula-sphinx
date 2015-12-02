@@ -1,10 +1,11 @@
-{%- set server = pillar.sphinx.server -%}
-name: Sphinx
-description: Sphinx is a tool that makes it easy to create intelligent and beautiful documentation.
-documentation: http://sphinx-doc.org/tutorial.html
-role:
-  server:
-    name: server
-    param:
-      version:
-        value: {{ salt['cmd.run']('sphinx-build --version')|replace('Sphinx (sphinx-build) ', '') }}
+{%- set server = pillar.sphinx.server %}
+doc:
+  name: Sphinx
+  description: Sphinx is a tool that makes it easy to create intelligent and beautiful documentation.
+  documentation: http://sphinx-doc.org/tutorial.html
+  role:
+    server:
+      name: server
+      param:
+        version:
+          value: {{ salt['cmd.run']('sphinx-build --version')|replace('Sphinx (sphinx-build) ', '') }}
