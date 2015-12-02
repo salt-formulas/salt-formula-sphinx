@@ -13,9 +13,9 @@ Definition of all nodes within current infrastructure.
       - **Assigned Services**
 {%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
    *  - {{ node_name }}
-{%- if node_grains.sphinx_doc is defined %}
+{%- if node_grains.sphinx is defined %}
       - {{ node_grains.ipv4 }}
-      - {% for service_name, service in node_grains.sphinx_doc.iteritems() %}{% for role_name, role in service.role.iteritems() %}{{ service_name }}-{{ role_name }} {% endfor %}{% endfor %}
+      - {% for service_name, service in node_grains.get('sphinx', {}).get('doc', {}).iteritems() %}{% for role_name, role in service.role.iteritems() %}{{ service_name }}-{{ role_name }} {% endfor %}{% endfor %}
 {%- else %}
       - N/A
       - N/A

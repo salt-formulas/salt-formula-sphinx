@@ -5,7 +5,7 @@ Node {{ node_name }}
 
 {%- if node_grains.get('sphinx_doc', {}) is not none %}
 
-{%- for service_name, service in node_grains.get('sphinx_doc', {}).iteritems() %}
+{%- for service_name, service in node_grains.get('sphinx', {}).get('doc', {}).iteritems() %}
 
 Service {{ service_name }}
 ===============================================
