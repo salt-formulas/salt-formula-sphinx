@@ -6,6 +6,7 @@ Infrastructure Nodes
 Definition of all nodes within current infrastructure.
 
 .. list-table::
+   :widths: 30 15 55
    :header-rows: 1
 
    *  - **Node FQDN**
@@ -14,7 +15,9 @@ Definition of all nodes within current infrastructure.
 {%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
    *  - {{ node_name }}
 {%- if node_grains.sphinx is defined %}
-      - {{ node_grains.ipv4 }}
+      - {% for ip in node_grains.ipv4 %}
+        * {% if ip != "127.0.0.1" %}{{ ip }}
+        {%- endfor %}
       - {% for service_name, service in node_grains.get('sphinx', {}).get('doc', {}).iteritems() %}{% for role_name, role in service.role.iteritems() %}{{ service_name }}-{{ role_name }} {% endfor %}{% endfor %}
 {%- else %}
       - N/A
