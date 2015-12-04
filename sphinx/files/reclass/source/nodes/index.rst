@@ -16,7 +16,9 @@ Definition of all nodes within current infrastructure.
    *  - {{ node_name }}
 {%- if node_grains.sphinx is defined %}
       - {% for ip in node_grains.ipv4 %}
-        * {% if ip != "127.0.0.1" %}{{ ip }}
+        {%- if ip != "127.0.0.1" %}
+        * {{ ip }}
+        {%- endif %}
         {%- endfor %}
       - {% for service_name, service in node_grains.get('sphinx', {}).get('doc', {}).iteritems() %}{% for role_name, role in service.role.iteritems() %}{{ service_name }}-{{ role_name }} {% endfor %}{% endfor %}
 {%- else %}
