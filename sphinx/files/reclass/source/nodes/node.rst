@@ -11,6 +11,7 @@ Service {{ service_name }}
 ===============================================
 
 .. list-table::
+   :widths: 15 15 70
    :header-rows: 1
 
    *  - **Service Role**
