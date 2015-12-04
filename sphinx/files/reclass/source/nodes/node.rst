@@ -19,7 +19,7 @@ Service {{ service_name }}
 {%- for role_name, role in service.role.iteritems() %}
 {%- for param_name, param in role.get('param', {}).iteritems() %}
    *  - {{ service_name }}-{{ role_name }}
-      - {{ param_name }}
+      - {{ param.get('name', param_name) }}
       - {{ param.value }}
 {%- endfor %}
 {%- endfor %}
