@@ -1,6 +1,8 @@
 
+.. _{{ node_name }}:
+
 ===============================================
-Node {{ node_name }}
+{{ node_name }}
 ===============================================
 
 {%- if node_grains.get('sphinx_doc', {}) is not none %}
@@ -11,7 +13,6 @@ Service {{ service_name }}
 ===============================================
 
 .. list-table::
-   :width: 100
    :widths: 15 15 70
    :header-rows: 1
 

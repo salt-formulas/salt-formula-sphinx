@@ -13,7 +13,7 @@ Definition of all nodes within current infrastructure.
       - **IP Addresses**
       - **Assigned Services**
 {%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
-   *  - {{ node_name }}
+   *  - :ref:`{{ node_name }}`
 {%- if node_grains.sphinx is defined %}
       - {% for ip in node_grains.ipv4 %}
         {%- if ip != "127.0.0.1" %}

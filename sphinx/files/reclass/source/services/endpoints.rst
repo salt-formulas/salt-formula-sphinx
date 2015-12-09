@@ -1,9 +1,9 @@
 
-===============================
+=================
 Service Endpoints
-===============================
+=================
 
-Services exposed within configured infrastructure.
+Services endpoints within configured infrastructure.
 
 .. list-table::
    :header-rows: 1
@@ -24,7 +24,7 @@ Services exposed within configured infrastructure.
       - {{ endpoint.address }}
       - {{ endpoint.protocol }}
       - {{ service_name }}
-      - {{ node_name }}
+      - :ref:`{{ node_name }}`
 {%- endfor %}
 {%- endif %}
 {%- endfor %}
