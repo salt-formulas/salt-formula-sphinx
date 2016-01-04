@@ -28,8 +28,8 @@ sphinx_packages:
   - require:
     - file: /srv/static/sites
 
-{%- if doc.source.engine == 'reclass' %}
-{%- include "sphinx/_reclass.sls" %}
+{%- if doc.source.engine in ['reclass', 'salt-mine'] %}
+{%- include "sphinx/_salt.sls" %}
 {%- endif -%}
 
 {%- if doc.source.engine == 'git' %}
