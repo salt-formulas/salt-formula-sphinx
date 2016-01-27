@@ -1,3 +1,6 @@
+{% macro render_list(param) %}
+{{ param }} 
+{% endmacro %}
 
 .. _{{ node_name }}:
 
@@ -23,7 +26,8 @@ Service {{ service_name }}
 {%- for param_name, param in role.get('param', {}).iteritems() %}
    *  - {{ service_name }}-{{ role_name }}
       - {{ param.get('name', param_name) }}
-      - {{ param.value }}
+      -
+{{ render_list(param.value)|indent(8, True) }} 
 {%- endfor %}
 {%- endfor %}
 
