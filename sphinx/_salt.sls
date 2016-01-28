@@ -20,9 +20,12 @@ salt_mine_doc_dirs:
 /srv/static/extern/salt/source/conf.py:
   file.managed:
   - source: salt://sphinx/files/salt/source/conf.py
+  - template: jinja
   - mode: 644
   - require:
     - file: salt_mine_doc_dirs
+  - defaults:
+    doc: {{ doc|yaml }}
 
 /srv/static/extern/salt/source/index.rst:
   file.managed:

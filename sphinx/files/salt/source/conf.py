@@ -15,6 +15,41 @@
 import sys
 import os
 
+{%- if doc.theme is defined %}
+try:
+  from {{ doc.theme }}.theme_conf import *
+except:
+  pass
+
+settings_path = os.path.dirname(os.path.realpath(__file__))
+
+source_suffix = '.rst'
+
+master_doc = 'index'
+
+project = u'reclass-doc'
+
+pygments_style = 'sphinx'
+
+htmlhelp_basename = 'reclass-docdoc'
+
+latex_documents = [
+  ('index', 'reclass-doc.tex', u'reclass-doc Documentation',
+   u'reclass', 'howto'),
+]
+
+man_pages = [
+    ('index', 'reclass-doc', u'reclass-doc Documentation',
+     [u'reclass'], 1)
+]
+
+texinfo_documents = [
+  ('index', 'reclass-doc', u'reclass-doc Documentation',
+   u'reclass', 'reclass-doc', 'One line description of project.',
+   'Miscellaneous'),
+]
+{%- else %}
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -256,3 +291,4 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+{%- endif %}
