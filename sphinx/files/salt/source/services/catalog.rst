@@ -15,6 +15,7 @@ All used services within configured infrastructure.
 .. list-table::
    :widths: 20 80
    :header-rows: 1
+
    *  - **Service**
       - **Description**
 {%- for service_name, service in services.iteritems() %}
