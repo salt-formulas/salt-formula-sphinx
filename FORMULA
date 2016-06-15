@@ -1,0 +1,8 @@
+name: sphinx
+os: Debian 
+os_family: Debian 
+version: 201606
+release: 1
+summary: sphinx salt formula
+description: Install and configure sphinx system.
+top_level_dir: sphinx
