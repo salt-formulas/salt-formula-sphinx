@@ -1,7 +1,7 @@
 {%- set doc = salt['pillar.get']('sphinx:server:doc:'+doc_name) %}
 
 =============================================================================================
-{% if doc.title is defined %}{{ doc.title }}{% else %}Model-Driven Documentation{% endif %}
+{% if doc.title is defined %}{{ doc.title }}{% else %}SaltStack Deployment Documentation{% endif %}
 =============================================================================================
 
 {%- if doc.description is defined %}
