@@ -1,7 +1,7 @@
 
-===============================
+===============
 Service Catalog
-===============================
+===============
 
 All used services within configured infrastructure.
 

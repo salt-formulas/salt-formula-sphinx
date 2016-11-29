@@ -25,7 +25,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc: {{ doc|yaml }}
+      doc: {{ doc|yaml }}
 
 /srv/static/extern/salt/source/index.rst:
   file.managed:
@@ -35,7 +35,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/services/index.rst:
   file.managed:
@@ -45,7 +45,17 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
+
+/srv/static/extern/salt/source/services/monitoring.rst:
+  file.managed:
+  - source: salt://sphinx/files/salt/source/services/monitoring.rst
+  - template: jinja
+  - mode: 644
+  - require:
+    - file: salt_mine_doc_dirs
+  - defaults:
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/services/endpoints.rst:
   file.managed:
@@ -55,7 +65,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/services/catalog.rst:
   file.managed:
@@ -65,7 +75,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/nodes/index.rst:
   file.managed:
@@ -75,9 +85,12 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
-{%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
+{%- set mine_nodes = salt['mine.get']('*', 'grains.items') %}
+{%- if mine_nodes is mapping %}
+
+{%- for node_name, node_grains in mine_nodes.iteritems() %}
 
 /srv/static/extern/salt/source/nodes/{{ node_name }}.rst:
   file.managed:
@@ -87,10 +100,12 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    node_name: {{ node_name }}
-    node_grains: {{ node_grains|yaml }}
+      node_name: {{ node_name }}
+      node_grains: {{ node_grains|yaml }}
 
 {%- endfor %}
+
+{%- endif %}
 
 generate_sphinx_doc_{{ doc_name }}:
   cmd.run:
