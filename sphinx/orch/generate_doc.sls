@@ -21,6 +21,6 @@ mine_update:
 
 sphinx_state:
   salt.state:
-    - tgt: 'G@roles:sphinx.server'
+    - tgt: 'I@sphinx:server'
     - tgt_type: compound
     - sls: sphinx

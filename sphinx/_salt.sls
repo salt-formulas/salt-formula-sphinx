@@ -25,7 +25,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc: {{ doc|yaml }}
+      doc: {{ doc|yaml }}
 
 /srv/static/extern/salt/source/index.rst:
   file.managed:
@@ -35,7 +35,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/services/index.rst:
   file.managed:
@@ -45,7 +45,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/services/monitoring.rst:
   file.managed:
@@ -55,7 +55,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/services/endpoints.rst:
   file.managed:
@@ -65,7 +65,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/services/catalog.rst:
   file.managed:
@@ -75,7 +75,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 /srv/static/extern/salt/source/nodes/index.rst:
   file.managed:
@@ -85,7 +85,7 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    doc_name: "{{ doc_name }}"
+      doc_name: "{{ doc_name }}"
 
 {%- set mine_nodes = salt['mine.get']('*', 'grains.items') %}
 {%- if mine_nodes is mapping %}
@@ -100,8 +100,8 @@ salt_mine_doc_dirs:
   - require:
     - file: salt_mine_doc_dirs
   - defaults:
-    node_name: {{ node_name }}
-    node_grains: {{ node_grains|yaml }}
+      node_name: {{ node_name }}
+      node_grains: {{ node_grains|yaml }}
 
 {%- endfor %}
 
