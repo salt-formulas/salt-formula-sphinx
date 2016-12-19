@@ -1,5 +1,15 @@
 {% macro render_list(param) %}
-{{ param }} 
+{%- if param is mapping %}
+{%- for key, value in param.iteritems() %}
+- {{ key }}: {{ value }}
+{%- endfor %}
+{%- elif param is string or param is number %}
+{{ param }}
+{%- else %}
+{%- for p in param %}
+- {{ p }}
+{%- endfor %}
+{%- endif %}
 {% endmacro %}
 
 .. _{{ node_name }}:
