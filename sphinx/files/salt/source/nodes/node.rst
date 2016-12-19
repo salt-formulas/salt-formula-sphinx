@@ -10,7 +10,7 @@
 
 {%- if node_grains.get('sphinx_doc', {}) is not none %}
 
-{%- for service_name, service in node_grains.get('sphinx', {}).get('doc', {}).iteritems() %}
+{%- for service_name, service in node_grains.get('sphinx', {}).get('doc', {})|dictsort %}
 
 Service {{ service_name }}
 ===============================================
@@ -23,13 +23,13 @@ Service {{ service_name }}
       - **Parameter**
       - **Value**
 {%- if service.role is mapping %}
-{%- for role_name, role in service.role.iteritems() %}
+{%- for role_name, role in service.role|dictsort %}
 {%- if role.get('param', {}) %}
-{%- for param_name, param in role.get('param', {}).iteritems() %}
+{%- for param_name, param in role.get('param', {})|dictsort %}
    *  - {{ service_name }}-{{ role_name }}
       - {{ param.get('name', param_name) }}
       -
-{{ render_list(param.value)|indent(8, True) }} 
+{{ render_list(param.value)|indent(8, True) }}
 {%- endfor %}
 {%- endif %}
 {%- endfor %}

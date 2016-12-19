@@ -29,9 +29,9 @@ Functional Alarms Definitions
       - **Threshold**
       - **Function**
       - **Window**
-{%- for node_name, node_grains in salt['mine.get']('*', 'grains.items').iteritems() %}
+{%- for node_name, node_grains in salt['mine.get']('*', 'grains.items')|dictsort %}
 {%- if node_grains.get('heka', {}).get('metric_collector', {}).get('alarm', {}) is mapping %}
-{%- for alarm_name, alarm in node_grains.get('heka', {}).get('metric_collector', {}).get('alarm', {}).iteritems() %}
+{%- for alarm_name, alarm in node_grains.get('heka', {}).get('metric_collector', {}).get('alarm', {})|dictsort %}
 {%- for trigger_name in alarm.triggers %}
 {%- set trigger = node_grains.get('heka', {}).get('metric_collector', {}).get('trigger', {}).get(trigger_name, {  }) %}
 {%- for rule in trigger.get('rules', []) %}
