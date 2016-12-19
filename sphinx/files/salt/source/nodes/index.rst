@@ -30,7 +30,7 @@ Definition of all nodes within current infrastructure.
 {%- endfor %}
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
 {% for node_name, node_grains in mine_nodes|dictsort %}
 {%- if node_grains.get('sphinx_doc', {}) != None %}

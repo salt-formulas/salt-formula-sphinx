@@ -6,7 +6,7 @@ Infrastructure Services
 Definition of all services used within defined infrastructure.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    endpoints
    catalog
