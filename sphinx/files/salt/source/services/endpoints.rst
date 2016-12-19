@@ -20,9 +20,9 @@ Services endpoints within configured infrastructure.
 {%- for role_name, role in service.get('role', {}).iteritems() %}
 {%- if role.get('endpoint', {}) != None %}
 {%- for endpoint_name, endpoint in role.get('endpoint', {}).iteritems() %}
-   *  - {{ endpoint.type }}
-      - {{ endpoint.address }}
-      - {{ endpoint.protocol }}
+   *  - {{ endpoint.type|default('n/a') }}
+      - {{ endpoint.address|default('n/a') }}
+      - {{ endpoint.protocol|default('n/a') }}
       - {{ service_name }}
       - :ref:`{{ node_name }}`
 {%- endfor %}
