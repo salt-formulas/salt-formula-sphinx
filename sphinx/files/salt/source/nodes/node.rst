@@ -24,12 +24,14 @@ Service {{ service_name }}
       - **Value**
 {%- if service.role is mapping %}
 {%- for role_name, role in service.role.iteritems() %}
+{%- if role.get('param', {}) %}
 {%- for param_name, param in role.get('param', {}).iteritems() %}
    *  - {{ service_name }}-{{ role_name }}
       - {{ param.get('name', param_name) }}
       -
 {{ render_list(param.value)|indent(8, True) }} 
 {%- endfor %}
+{%- endif %}
 {%- endfor %}
 {%- endif %}
 
