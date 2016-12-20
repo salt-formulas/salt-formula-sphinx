@@ -11,7 +11,7 @@ Model-driven documentation of SaltStack infrastructure deployment.
 {%- endif %}
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    services/index
    nodes/index

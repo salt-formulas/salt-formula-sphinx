@@ -14,7 +14,7 @@ Definition of all nodes within current infrastructure.
    *  - **Node FQDN**
       - **IP Addresses**
       - **Assigned Services**
-{%- for node_name, node_grains in mine_nodes.iteritems() %}
+{%- for node_name, node_grains in mine_nodes|dictsort %}
    *  - :ref:`{{ node_name }}`
 {%- if node_grains.sphinx is defined %}
       - {% for ip in node_grains.ipv4 %}
@@ -22,7 +22,7 @@ Definition of all nodes within current infrastructure.
         * {{ ip }}
         {%- endif %}
         {%- endfor %}
-      - {% for service_name, service in node_grains.get('sphinx', {}).get('doc', {}).iteritems() %}{% if service.role is mapping %}{% for role_name, role in service.role.iteritems() %}{{ service_name }}-{{ role_name }} {% endfor %}{% endif %}{% endfor %}
+      - {% for service_name, service in node_grains.get('sphinx', {}).get('doc', {})|dictsort %}{% if service.role is mapping %}{% for role_name, role in service.role|dictsort %}{{ service_name }}-{{ role_name }} {% endfor %}{% endif %}{% endfor %}
 {%- else %}
       - N/A
       - N/A
@@ -30,9 +30,9 @@ Definition of all nodes within current infrastructure.
 {%- endfor %}
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
-{% for node_name, node_grains in mine_nodes.iteritems() %}
+{% for node_name, node_grains in mine_nodes|dictsort %}
 {%- if node_grains.get('sphinx_doc', {}) != None %}
    {{ node_name }}
 {%- endif %}
