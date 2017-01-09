@@ -9,15 +9,44 @@ Definition of monitoring metrics, logs, functional alarms.
 Log Parsing Definitions
 =======================
 
-TODO: Include heka.log_collector inputs
+
+TODO: Include Heka log collector inputs
+
 
 Metric Collection Definitions
 =============================
 
-TODO: Include collectd metric defintions
+TODO: Include collectd metric definitions
+
 
 Functional Alarms Definitions
 =============================
+
+The explanation of columns.
+
+**Node**
+    Node where the alarm is defined
+
+**Alarm**
+    Alarm aggregating the triggers
+
+**Trigger**
+    Individual alarm trigger
+
+**Metric**
+    Metric being evaluated
+
+**Operator**
+    Conditional operator for the metric
+
+**Threshold**
+    The defined metric threshold
+
+**Function**
+    The aggregation functions for the given duration (avg, max, min, etc.)
+
+**Duration**
+    Duration for the aggregation
 
 .. list-table::
    :header-rows: 1
@@ -25,10 +54,11 @@ Functional Alarms Definitions
    *  - **Node**
       - **Alarm**
       - **Trigger**
+      - **Metric**
       - **Operator**
       - **Threshold**
       - **Function**
-      - **Window**
+      - **Duration**
 {%- for node_name, node_grains in salt['mine.get']('*', 'grains.items')|dictsort %}
 {%- if node_grains.get('heka', {}).get('metric_collector', {}).get('alarm', {}) is mapping %}
 {%- for alarm_name, alarm in node_grains.get('heka', {}).get('metric_collector', {}).get('alarm', {})|dictsort %}
@@ -38,6 +68,7 @@ Functional Alarms Definitions
    *  - {{ node_name }}
       - {{ alarm_name }}
       - {{ trigger_name }}
+      - {{ rule.metric }}
       - {{ rule.relational_operator }}
       - {{ rule.threshold }}
       - {{ rule.function }}
