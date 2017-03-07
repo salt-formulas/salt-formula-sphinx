@@ -1,14 +1,18 @@
 {% macro render_list(param) %}
-{%- if param is mapping %}
-{%- for key, value in param.iteritems() %}
+{%- if param %}
+   {%- if param is mapping %}
+      {%- for key, value in param.iteritems() %}
 - {{ key }}: {{ value }}
-{%- endfor %}
-{%- elif param is string or param is number %}
+      {%- endfor %}
+   {%- elif param is string or param is number %}
 {{ param }}
-{%- else %}
-{%- for p in param %}
+   {%- else %}
+      {%- for p in param %}
 - {{ p }}
-{%- endfor %}
+      {%- endfor %}
+   {%- endif %}
+{%- else %}
+None
 {%- endif %}
 {% endmacro %}
 
@@ -52,3 +56,6 @@ Service {{ service_name }}
 This node has no documentation configured.
 
 {%- endif %}
+{#-
+   vim: syntax=jinja
+#}
