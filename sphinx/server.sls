@@ -28,24 +28,31 @@ sphinx_packages:
   - require:
     - file: /srv/static/sites
 
+{%- if doc.get("prebuilded_venv", False) %}
+  {%- set sphinx_build_bin = doc.prebuilded_venv + "/sphinx-build"  %}
+{% else %}
+  {%- set sphinx_build_bin = "sphinx-build"  %}
+{%- endif %}
+
+{% with sphinx_build_bin=sphinx_build_bin %}
 {%- if doc.source.engine in ['reclass', 'salt-mine'] %}
 {%- include "sphinx/_salt.sls" %}
+{%- endif -%}
+
+{%- if doc.source.engine in ['pillar-schema'] %}
+{%- include "sphinx/_schema.sls" %}
 {%- endif -%}
 
 {%- if doc.source.engine == 'git' %}
 {%- include "sphinx/_git.sls" %}
 {%- endif -%}
-
-{%- if doc.source.engine == 'local' %}
+{% endwith %}
 
 generate_sphinx_doc_{{ doc_name }}:
   cmd.run:
-  - name: sphinx-build -b {{ doc.builder }} {{ doc.source.path }} /srv/static/sites/{{ doc_name }}
+  - name: {{ sphinx_build_bin }} -b {{ doc.builder }} /srv/static/extern/salt-schema/source /srv/static/sites/{{ doc_name }}
   - require:
     - file: /srv/static/sites/{{ doc_name }}
-
-{%- endif %}
-
 {%- endfor %}
 
 {%- endif %}
