@@ -10,6 +10,6 @@ Vcs-Git: https://github.com/tcpcloud/salt-formula-sphinx.git
 
 Package: salt-formula-sphinx
 Architecture: all
-Depends: ${misc:Depends}, salt-master, reclass
+Depends: ${misc:Depends}
 Description: sphinx salt formula
  Install and configure sphinx system.
