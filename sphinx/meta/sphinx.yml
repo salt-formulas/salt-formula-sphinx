@@ -8,4 +8,4 @@ doc:
       name: server
       param:
         version:
-          value: "{{ salt['cmd.run']('sphinx-build --version 2>/dev/null || echo unknown')|replace('Sphinx (sphinx-build) ', '') }}"
+          value: "{{ salt['cmd.shell']('sphinx-build --version 2>/dev/null || echo unknown')|replace('Sphinx (sphinx-build) ', '') }}"
