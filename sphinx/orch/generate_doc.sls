@@ -14,7 +14,7 @@ salt_minion_grains:
 {# Mine flush/update works only when executed via salt-call #}
 mine_update:
   salt.function:
-    - name: cmd.run
+    - name: cmd.shell
     - tgt: '*'
     - arg:
       - salt-call mine.flush; salt-call mine.update
