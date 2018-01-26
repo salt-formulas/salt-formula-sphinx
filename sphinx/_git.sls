@@ -8,11 +8,11 @@ sphinx_source_{{ doc_name }}:
     - file: /srv/static/extern
     - pkg: git_packages
   - require_in:
-    - cmd: generate_sphinx_doc_{{ doc_name }}
+    - cmd: generate_sphinx_doc_git_{{ doc_name }}
 
-generate_sphinx_doc_{{ doc_name }}:
+generate_sphinx_doc_git_{{ doc_name }}:
   cmd.run:
-  - name: sphinx-build -b {{ doc.builder }} /srv/static/extern/{{ doc_name }}{% if doc.path is defined %}/{{ doc.path }}{% endif %} /srv/static/sites/{{ doc_name }}
+  - name: {{ sphinx_build_bin }} -b {{ doc.builder }} /srv/static/extern/{{ doc_name }}{% if doc.path is defined %}/{{ doc.path }}{% endif %} /srv/static/sites/{{ doc_name }}
   - require:
     - git: sphinx_source_{{ doc_name }}
     - file: /srv/static/sites/{{ doc_name }}

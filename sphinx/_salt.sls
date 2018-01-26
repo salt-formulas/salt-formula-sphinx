@@ -77,6 +77,14 @@ salt_mine_doc_dirs:
   - defaults:
       doc_name: "{{ doc_name }}"
 
+/srv/static/extern/salt/source/services/schema.rst:
+  file.managed:
+  - source: salt://sphinx/files/salt/source/services/schema.rst
+  - template: jinja
+  - mode: 644
+  - require:
+    - file: salt_mine_doc_dirs
+
 /srv/static/extern/salt/source/nodes/index.rst:
   file.managed:
   - source: salt://sphinx/files/salt/source/nodes/index.rst
@@ -107,7 +115,7 @@ salt_mine_doc_dirs:
 
 {%- endif %}
 
-generate_sphinx_doc_{{ doc_name }}:
+generate_sphinx_doc_salt_{{ doc_name }}:
   cmd.run:
   - name: sphinx-build -b {{ doc.builder }} /srv/static/extern/salt/source /srv/static/sites/{{ doc_name }}
   - require:

@@ -7,7 +7,7 @@
 {%- if doc.description is defined %}
 {{ doc.description }}
 {%- else %}
-Model-driven documentation of SaltStack infrastructure deployment.
+Documentation generated from SaltStack infrastructure model.
 {%- endif %}
 
 .. toctree::
