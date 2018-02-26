@@ -48,11 +48,6 @@ sphinx_packages:
 {%- endif -%}
 {% endwith %}
 
-generate_sphinx_doc_{{ doc_name }}:
-  cmd.run:
-  - name: {{ sphinx_build_bin }} -b {{ doc.builder }} /srv/static/extern/salt-schema/source /srv/static/sites/{{ doc_name }}
-  - require:
-    - file: /srv/static/sites/{{ doc_name }}
 {%- endfor %}
 
 {%- endif %}
