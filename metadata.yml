@@ -1,3 +1,3 @@
 name: "sphinx"
 version: "0.2"
-source: "https://github.com/tcpcloud/salt-formula-sphinx"
+source: "https://github.com/salt-formulas/salt-formula-sphinx"
