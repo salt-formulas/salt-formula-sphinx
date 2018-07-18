@@ -1,3 +1,6 @@
 name: "sphinx"
 version: "0.2"
 source: "https://github.com/salt-formulas/salt-formula-sphinx"
+dependencies:
+- name: git
+  source: "https://github.com/salt-formulas/salt-formula-git"

@@ -18,7 +18,7 @@ Simple documentation with local source
         doc:
           board:
             builder: 'html'
-            source: 
+            source:
               engine: local
               path: '/path/to/sphinx/documentation'
 
@@ -32,7 +32,7 @@ Simple documentation with Git source
         doc:
           board:
             builder: 'html'
-            source: 
+            source:
               engine: git
               address: 'git@repo1.domain.com/repo.git'
               revision: master
@@ -47,7 +47,7 @@ Simple documentation with reclass source
         doc:
           board:
             builder: 'html'
-            source: 
+            source:
               engine: reclass
 
 
